@@ -1,0 +1,26 @@
+{
+  "name": "Intern Shadowing · 7편 영어 학습",
+  "short_name": "Intern Shadowing",
+  "description": "7편 SRT 자막의 시간에 맞춰 로컬 영상으로 오프라인 섀도잉",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111923",
+  "theme_color": "#fa7775",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
