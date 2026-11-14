@@ -46,6 +46,25 @@ header{flex:0 0 auto}
  .layout>.panel:first-child{height:calc(52% - 8px)}
  header p{display:none}
 }
+
+/* v12 mobile: give the sentence list the bottom third of visible screen */
+@media(max-width:850px){
+ .layout>.panel.videoBox{height:43%;flex:0 0 43%;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+ .layout>.panel:first-child{height:calc(57% - 8px);flex:1 1 0;min-height:0;overflow:hidden}
+ .layout>.panel:first-child>p.small{display:none}
+ .layout>.panel:first-child .toolbar{margin:3px 0;gap:4px}
+ .layout>.panel:first-child .toolbar .btn{padding:5px 7px;font-size:12px}
+ .layout>.panel:first-child input[type=search]{padding:6px 9px}
+ .layout>.panel:first-child .heading{margin-bottom:2px}
+ .layout>.panel:first-child>.row{margin-top:3px!important}
+ .layout>.panel:first-child>.row #more{padding:4px 16px;font-size:12px}
+ .cueList{flex:1 1 auto;min-height:0;height:0;overflow-y:auto;max-height:none;touch-action:pan-y;overscroll-behavior:contain}
+ .cue{padding:8px 4px}
+}
+@media(max-width:850px) and (max-height:680px){
+ .layout>.panel.videoBox{height:40%;flex-basis:40%}
+ .layout>.panel:first-child{height:calc(60% - 8px)}
+}
 </style></head><body>
 <header><img src="./icons/icon-192.png" alt="Intern Shadowing 아이콘"><div><h1>Intern Shadowing</h1><p>7편 영어 섀도잉 · 문장별 반복 재생 · 오프라인 학습</p></div><button class="btn" id="install" style="margin-left:auto">앱 설치</button></header>
 <main class="wrap">
