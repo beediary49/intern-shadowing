@@ -1,20 +1,7 @@
-# Intern Shadowing v22 — 재생 위치 선택 오류 수정
+# Intern Shadowing v30 — Part 6 마지막 문장 보완
 
-## 수정한 내용
-- 중간 문장(예: Part 1의 26:29)을 클릭했을 때 재생 위치를 탐색하던 중 자동으로 Part를 전환할 가능성을 차단했습니다.
-- 문장을 클릭하면 해당 시작 시간으로 탐색이 완료된 뒤 재생하며, 탐색 직후 이전 시간 이벤트를 잠시 무시합니다.
-- **구간 반복 OFF:** 일반 재생 중 다음 문장으로 계속 진행합니다. 실제 MP4 재생이 종료될 때만 다음 Part로 이동합니다.
-- **구간 반복 ON:** 선택한 문장만 반복합니다.
-- 다음 Part가 없거나 영상 파일을 등록하지 않은 경우 기존과 같이 안내합니다.
-- 기존 자막과 영상 보관함, 즐겨찾기, PC 왼쪽 영상/오른쪽 문장 배치를 유지합니다.
-
-## 주요 확인 구간
-- Part 1 `Okay, let me just review this with you.`: 26:10~26:29, 끝나도 **Part 1의 다음 문장**이 이어집니다.
-- Part 1 `You have six bridesmaids. You ordered six of the silk chiffon Antoinette dresses in pink.`: 26:29~26:56 시작점으로 탐색합니다.
-- Part 1 실제 영상 종료: 구간 반복 OFF일 때 Part 2로 넘어갑니다.
-
-### 알려진 한계
-정상적인 브라우저 미디어 이벤트를 기준으로 로직을 검토했습니다. 실제 사용자 갤럭시/Windows 환경에서의 재생 동작을 원격으로 직접 시험한 것은 아닙니다. 자막 자체의 영상 싱크 오류는 이번 패치 대상이 아닙니다.
-
-## GitHub Pages 업데이트
-압축을 풀고 기존 GitHub 저장소에 동일한 파일/폴더 구조로 업로드한 뒤 Commit changes를 누르세요. 앱 상단 v22를 확인하세요.
+- Part 6의 마지막 문장을 `It's a thing I do before I land. We're good now.`로 수정했습니다.
+- 기존 학습 구간 57:10.88–57:36.75을 유지합니다.
+- 구간 반복, 자동 문장 스크롤, Part 1~6 다음 Part 자동 이동, Part 7 정지 기능을 유지합니다.
+- GitHub 저장소에 압축을 푼 파일을 업로드하고 Commit changes를 눌러 주세요.
+- 상단의 v30 표시를 확인하세요.
