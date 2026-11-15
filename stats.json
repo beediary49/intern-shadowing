@@ -1,1 +1,15 @@
-[{"part": 1, "cues": 2162, "length": 4420, "unique": 453}, {"part": 2, "cues": 1676, "length": 4426, "unique": 852}, {"part": 3, "cues": 1687, "length": 4050, "unique": 339}, {"part": 4, "cues": 1496, "length": 3545, "unique": 520}, {"part": 5, "cues": 2412, "length": 5418, "unique": 749}, {"part": 6, "cues": 1631, "length": 3459, "unique": 339}, {"part": 7, "cues": 2101, "length": 5193, "unique": 588}]
+{
+  "version": "v16",
+  "part_counts": [
+    215,
+    219,
+    190,
+    201,
+    290,
+    180,
+    237
+  ],
+  "total": 1532,
+  "data_basis": "SRT captions + user-provided PDF script",
+  "quality": "automatic alignment with selected manual checks; not frame-accurate validated"
+}
