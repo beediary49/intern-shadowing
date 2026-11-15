@@ -1,5 +1,5 @@
 {
-  "version": "v16",
+  "version": "v18",
   "part_counts": [
     215,
     219,
@@ -11,5 +11,6 @@
   ],
   "total": 1532,
   "data_basis": "SRT captions + user-provided PDF script",
-  "quality": "automatic alignment with selected manual checks; not frame-accurate validated"
+  "quality": "automatic alignment with selected manual checks; not frame-accurate validated",
+  "audit": "7 SRT full timestamp/phrase comparison + screenshot-based Floater correction; manual listening not complete"
 }
