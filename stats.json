@@ -1,7 +1,7 @@
 {
-  "version": "v24",
+  "version": "v33",
   "part_counts": [
-    215,
+    214,
     219,
     190,
     201,
@@ -9,8 +9,8 @@
     180,
     237
   ],
-  "total": 1532,
+  "total": 1531,
   "data_basis": "SRT captions + user-provided PDF script",
-  "quality": "automatic alignment with selected manual checks; not frame-accurate validated",
+  "quality": "Part 1 screenshot-confirmed 4 captions corrected, one split; all remaining Part 1-7 captions not frame-by-frame verified",
   "audit": "7 SRT full timestamp/phrase comparison + screenshot-based Floater correction; manual listening not complete"
 }

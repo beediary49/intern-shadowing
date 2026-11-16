@@ -134,7 +134,7 @@
   {
     "start": 297.36,
     "end": 324.08,
-    "text": "Get up, get out of the house, and go somewhere.",
+    "text": "Get up, get out of the house, and go somewhere. Anywhere.",
     "repeats": 1,
     "occurrences": [
       [
@@ -170,7 +170,7 @@
   {
     "start": 368.96,
     "end": 406.68,
-    "text": "How do I spend the rest of my days? Golf, books, movies, pinochle.",
+    "text": "How do I spend the rest of my days? You name it. Golf, books, movies, pinochle.",
     "repeats": 1,
     "occurrences": [
       [
@@ -193,12 +193,24 @@
   },
   {
     "start": 436.16,
-    "end": 487.16,
-    "text": "Translation, \"Believe me, I've tried everything.” And then, of course, there are the funerals.",
+    "end": 462.56,
+    "text": "Translation, \"Believe me, I've tried everything.\"",
     "repeats": 1,
     "occurrences": [
       [
         436.16,
+        462.56
+      ]
+    ]
+  },
+  {
+    "start": 462.56,
+    "end": 487.16,
+    "text": "And then, of course, there are the funerals.",
+    "repeats": 1,
+    "occurrences": [
+      [
+        462.56,
         487.16
       ]
     ]
