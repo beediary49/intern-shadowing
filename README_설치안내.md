@@ -1,4 +1,4 @@
-# Intern Shadowing v35 — Google 로그인 자동 동기화
+# Intern Shadowing v36 — Google 로그인 자동 동기화
 
 ## 1. 먼저 Firebase 프로젝트 설정 (필수)
 1. https://console.firebase.google.com/ 접속 후 프로젝트 만들기 (예: `intern-shadowing-sync`).
@@ -23,3 +23,12 @@
 - Firebase 프로젝트 생성 및 보안 규칙 설정은 사용자가 자기 Google 계정으로 해야 합니다. `apiKey`는 웹앱 식별정보이지만 API 사용 제한·보안 규칙을 정확히 적용해야 합니다.
 - 동시 수정은 최신 저장 시각을 기준으로 병합합니다. 네트워크가 오래 끊긴 상태에서는 충돌 가능성이 있으므로 중요한 기록은 백업 JSON도 저장하는 것이 좋습니다.
 - 서비스 요금제/무료 할당량은 Firebase Console에서 현재 조건을 확인하세요.
+
+
+## 중요: 실제 앱 데이터 경로의 Firestore Rules
+이 앱은 `/users/{uid}/records/{favorites|completed|notes|resume}` 경로를 사용합니다.
+이전에 안내된 `/users/{uid}` 단일 문서 허용 규칙으로는 하위 records 문서에 접근할 수 없습니다.
+이 패키지의 `firestore.rules`를 Firebase Console → Firestore → Rules에서 전체 교체하고 Publish하세요.
+
+기존 기록은 각 기기의 브라우저에 남아 있을 수 있으므로 초기 로그인 전에 기록 백업을 권장합니다.
+MP4는 동기화하지 않습니다. 실제 계정 로그인/동기화는 두 기기에서 테스트해야 합니다.

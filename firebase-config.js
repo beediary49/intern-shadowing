@@ -1,9 +1,9 @@
-// Firebase Console → Project settings → Your apps → Web app → firebaseConfig
-// 아래 항목을 본인 Firebase 프로젝트의 값으로 채우세요.
-// 이 설정은 공개 웹앱에서 사용되는 식별 정보이며 서버 관리자 비밀키가 아닙니다.
+// Intern Shadowing Firebase Web configuration (not a service-account secret)
 window.INTERN_FIREBASE_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  appId: ""
+  apiKey: "AIzaSyAp8oH7NtAYbI1R-3M7Q77HYQGy1ACL81g",
+  authDomain: "intern-shadowing-jkj.firebaseapp.com",
+  projectId: "intern-shadowing-jkj",
+  storageBucket: "intern-shadowing-jkj.firebasestorage.app",
+  messagingSenderId: "538338785907",
+  appId: "1:538338785907:web:29fe4264db570c21a1c806"
 };
