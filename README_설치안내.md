@@ -1,34 +1,20 @@
-# Intern Shadowing v36 — Google 로그인 자동 동기화
+# Intern Shadowing v37 — 간단한 Google 계정 로그인
 
-## 1. 먼저 Firebase 프로젝트 설정 (필수)
-1. https://console.firebase.google.com/ 접속 후 프로젝트 만들기 (예: `intern-shadowing-sync`).
-2. 프로젝트 설정 → 앱 추가 → **웹(</>)** 앱 등록.
-3. 웹앱 설정값 `firebaseConfig`에서 **apiKey, authDomain, projectId, appId**를 복사.
-4. `firebase-config.js`에 네 값을 입력하고 파일을 저장.
-5. Firebase Console → **Authentication → Sign-in method → Google → Enable**, 지원 이메일 설정 후 저장.
-6. Authentication → Settings → **Authorized domains**에 `beediary49.github.io` 추가. `https://`와 경로는 넣지 마세요.
-7. **Firestore Database → Create database** 선택 후 만들고 **Rules**에서 `firestore.rules` 내용을 복사해 붙여 넣은 다음 Publish. 기본 `test mode`의 공개 규칙을 유지하면 안 됩니다.
-8. 이 패키지에서 **index.html, cloud-sync.js, firebase-config.js, sw.js, 7개 data 폴더, icons 폴더, manifest.webmanifest 등**을 기존 GitHub Pages 저장소 `beediary49/intern-shadowing` 루트에 업로드한 후 Commit.
-9. https://beediary49.github.io/intern-shadowing/ 를 Chrome 또는 Edge에서 열어 **☁ Google 로그인**을 선택하세요.
-10. 노트북과 갤럭시에서 **같은 Google 계정**을 사용하면 동기화됩니다. 구 버전 기록은 첫 로그인할 때 보유 중인 데이터를 클라우드와 병합합니다.
+## 관리자(앱 소유자) 업데이트
+1. ZIP 압축을 풀고 **모든 파일과 폴더**를 GitHub 저장소 `beediary49/intern-shadowing`의 루트에 업로드해 같은 경로의 파일을 교체합니다.
+2. Commit changes 후 https://beediary49.github.io/intern-shadowing/ 에서 상단 **v37**을 확인합니다.
+3. Firebase Authentication > Google = Enabled, Authorized domains에 `beediary49.github.io` 등록, Firestore Rules에 패키지의 `firestore.rules` 게시 여부를 확인합니다. 이전 단계에서 모두 설정했다면 다시 하지 않습니다.
+4. 일반 사용자에게는 앱 **주소만** 공유하면 됩니다. **Firebase Console 가입·설정은 일반 사용자에게 필요 없습니다.**
 
-## 동기화 대상
-- 즐겨찾기, 학습 완료, 개인 메모: 로그인 시 불러오고 변경 시 자동 동기화
-- 마지막 Part / 재생 위치: 대략 15초 간격으로 동기화. 다른 기기에서 최신 위치를 수정했으면 앱 실행 시 복원하거나 ‘클라우드 학습 위치로 이동’ 표시
-- MP4 영상: 업로드하지 않음, 기기 내 영상 보관함에 별도 보관
+## 가족과 동료가 사용하는 방법
+1. Chrome/Edge 브라우저에서 앱 열기. 카카오톡에서 받은 링크는 **외부 브라우저로 열기** 권장.
+2. 상단 **Google로 시작하기** → **Google 계정으로 계속하기**를 선택합니다.
+3. 본인 Google 계정을 선택합니다. Google 비밀번호는 앱이 수집하지 않습니다.
+4. 동일 Google 계정으로 휴대폰/노트북에서 로그인하면 즐겨찾기, 완료, 메모와 마지막 학습 위치를 동기화합니다. MP4는 기기별로 따로 저장합니다.
+5. 로그인 없이도 학습 가능. **공용 기기에서는 로그아웃**해 다른 사람의 학습 기록이 표시되지 않도록 합니다.
 
-## 주의사항
-- 카카오톡 인앱 브라우저가 아닌 Chrome / Edge / 설치된 PWA에서 로그인하는 것이 좋습니다.
-- Firebase 설정 전에는 Google 로그인 기능이 비활성화되지만 기존 오프라인 학습, 기록 백업/복원이 가능합니다.
-- Firebase 프로젝트 생성 및 보안 규칙 설정은 사용자가 자기 Google 계정으로 해야 합니다. `apiKey`는 웹앱 식별정보이지만 API 사용 제한·보안 규칙을 정확히 적용해야 합니다.
-- 동시 수정은 최신 저장 시각을 기준으로 병합합니다. 네트워크가 오래 끊긴 상태에서는 충돌 가능성이 있으므로 중요한 기록은 백업 JSON도 저장하는 것이 좋습니다.
-- 서비스 요금제/무료 할당량은 Firebase Console에서 현재 조건을 확인하세요.
-
-
-## 중요: 실제 앱 데이터 경로의 Firestore Rules
-이 앱은 `/users/{uid}/records/{favorites|completed|notes|resume}` 경로를 사용합니다.
-이전에 안내된 `/users/{uid}` 단일 문서 허용 규칙으로는 하위 records 문서에 접근할 수 없습니다.
-이 패키지의 `firestore.rules`를 Firebase Console → Firestore → Rules에서 전체 교체하고 Publish하세요.
-
-기존 기록은 각 기기의 브라우저에 남아 있을 수 있으므로 초기 로그인 전에 기록 백업을 권장합니다.
-MP4는 동기화하지 않습니다. 실제 계정 로그인/동기화는 두 기기에서 테스트해야 합니다.
+## 유의사항
+- 기존 기록을 첫 계정에 연결하는 1회 마이그레이션을 포함했습니다. 여러 사람이 쓰는 기기에서는 기존 브라우저에 남은 기록의 소유자를 확인한 다음 로그인하세요.
+- Google 계정 간 데이터 자동 병합을 의도하지 않았으며, 로그인 세션·기기별 전환은 브라우저에서 추가 테스트가 필요합니다.
+- Firebase 연결 성공과 실제 클라우드 동기화는 PC/휴대폰에서 반드시 시험해야 합니다. 문제가 있으면 오류 상태를 캡처해 확인하세요.
+- 구간 반복, 자막, 영상 저장, 자동 Part 이동 등 v36 학습 기능을 유지했습니다.

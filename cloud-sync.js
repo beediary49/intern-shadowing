@@ -1,10 +1,13 @@
-// Intern Shadowing v35 — Firebase Google Auth + Cloud Firestore synchronization.
+// Intern Shadowing v37 — Firebase Google Auth + Cloud Firestore synchronization.
 // Videos are never uploaded. Local study continues to work when cloud config is absent.
 const $ = id => document.getElementById(id);
 const config = window.INTERN_FIREBASE_CONFIG || {};
 const status = message => { $('cloudStatus').textContent = message; };
 const prefix = 'intern-shadow-v13:';
 const types = ['favorites','completed','notes'];
+const guestKey='intern-shadow-sync-guest';
+const ownerKey='intern-shadow-sync-owner';
+const profilePrefix='intern-shadow-sync-profile:';
 const maps = {favorites,completed,notes}; // Existing app globals from index.html (same document scope)
 let auth, db, user, docs = {}, cloudInitialized = false, applying = false;
 let lastResumeSent = 0, remoteResume = null, booted = Date.now(), userInteracted = false;
@@ -18,6 +21,35 @@ const settingsReady = config.apiKey && config.authDomain && config.projectId && 
 const snapshot = {};
 for(const type of types) snapshot[type] = structuredClone(maps[type]);
 let recentResume = {...resume};
+// Different Google accounts on a shared device must never inherit each other's data.
+let activeProfile = localStorage.getItem('intern-shadow-sync-active') || 'guest';
+const clone = obj => JSON.parse(JSON.stringify(obj));
+function profileState(){return {favorites:clone(favorites),completed:clone(completed),notes:clone(notes),resume:clone(resume)};}
+function saveActiveProfile(){
+ if(activeProfile==='guest')localStorage.setItem(guestKey,JSON.stringify(profileState()));
+ else localStorage.setItem(profilePrefix+activeProfile,JSON.stringify(profileState()));
+}
+function replaceObject(target,source){for(const k of Object.keys(target))delete target[k];Object.assign(target,source||{});}
+function switchProfile(id){
+ const next=id||'guest'; if(activeProfile===next)return;
+ saveActiveProfile();
+ $('video').pause();
+ let data;
+ // One-time migration: legacy data goes only to the first authenticated account.
+ const firstOwner=localStorage.getItem(ownerKey);
+ if(id && !firstOwner){localStorage.setItem(ownerKey,id);data=profileState();localStorage.setItem(guestKey,JSON.stringify({favorites:{},completed:{},notes:{},resume:{part:1,time:0,start:0,updatedAt:0}}));}
+ else {try{data=JSON.parse(localStorage.getItem(next==='guest'?guestKey:profilePrefix+next)||'null')}catch{data=null}}
+ if(!data)data={favorites:{},completed:{},notes:{},resume:{part:1,time:0,start:0,updatedAt:0}};
+ for(const type of types){replaceObject(maps[type],data[type]);localStorage.setItem(prefix+type,JSON.stringify(maps[type]));snapshot[type]=clone(maps[type]);}
+ replaceObject(resume,data.resume);localStorage.setItem(prefix+'resume',JSON.stringify(resume));recentResume={...resume};
+ activeProfile=next;localStorage.setItem('intern-shadow-sync-active',next);
+ for(const key of Object.keys(versions))delete versions[key];persistVersions();
+ pending.clear();remoteResume=null;$('restoreCloudProgress').hidden=true;
+ filter();
+ // Display the correct profile position on the same device.
+ if(st.part!==safePart(resume.part)){st.restoring=true;loadPart(safePart(resume.part)).finally(()=>{st.restoring=false});}
+}
+window.addEventListener('intern-record-change',()=>{if(activeProfile!=='guest')saveActiveProfile();});
 function localChange(type,obj){
  const before=snapshot[type]; const after={...obj};
  const keys=new Set([...Object.keys(before),...Object.keys(after)]);
@@ -43,7 +75,7 @@ async function flush(){
   catch(e){pending.set(type,{...changes,...(pending.get(type)||{})});status('동기화 실패 · 인터넷 연결 및 Firestore 규칙을 확인하세요. '+(e.code||''));}
  }
  if(pending.size){flushHandle=setTimeout(flush,8000)}
- else status(user.displayName+' · 동기화됨');
+ else status('✓ 내 기록이 저장되었습니다.');
 }
 function combineMap(type,items){
  let changed=false;
@@ -120,7 +152,7 @@ window.addEventListener('intern-record-change',e=>{
 $('googleLogout').onclick=async()=>{if(auth)await signOut(auth)};
 let signOut,signInWithPopup,setDoc,doc;
 async function start(){
- if(!settingsReady){status('설정 필요: firebase-config.js에 Firebase 웹앱 설정을 입력하세요.');$('googleLogin').disabled=true;return}
+ if(!settingsReady){status('현재 Google 로그인을 사용할 수 없습니다. 관리자의 앱 연결 설정이 필요합니다.');$('googleLogin').disabled=true;return}
  try{
   const version='12.6.0';
   const [{initializeApp},{getAuth,GoogleAuthProvider,signInWithPopup:popup,onAuthStateChanged,signOut:logout},{getFirestore,doc:documentRef,getDoc,setDoc:writeDoc,onSnapshot}]=await Promise.all([
@@ -130,13 +162,13 @@ async function start(){
   ]);
   const app=initializeApp(config);auth=getAuth(app);db=getFirestore(app);signOut=logout;setDoc=writeDoc;doc=documentRef;
   $('googleLogin').onclick=async()=>{
-   try{status('Google 로그인 중…');await popup(auth,new GoogleAuthProvider())}
-   catch(e){status('로그인 실패: '+(e.code||e.message)+' · Chrome 또는 Edge에서 사용하고 인증 도메인을 확인하세요.')}
+   try{status('Google 계정을 선택해 주세요…');await popup(auth,new GoogleAuthProvider())}
+   catch(e){const c=e.code||'';status(c==='auth/popup-closed-by-user'?'로그인이 취소됐습니다. 다시 누르면 로그인할 수 있습니다.':c==='auth/popup-blocked'?'로그인 창이 차단됐습니다. Chrome에서 다시 열거나 팝업을 허용해 주세요.':'로그인하지 못했습니다 ('+c+'). Chrome 또는 Edge에서 다시 시도해 주세요.');}
   };
   onAuthStateChanged(auth,async u=>{
    for(const stop of unsubscribe)stop();unsubscribe=[];cloudInitialized=false;user=u;
-   if(!u){$('googleLogin').hidden=false;$('googleLogout').hidden=true;$('openCloud').textContent='☁ Google 로그인';status('로그인하면 휴대폰 ↔ 노트북 자동 동기화됩니다.');return}
-   $('googleLogin').hidden=true;$('googleLogout').hidden=false;$('openCloud').textContent='☁ 동기화 ✓';status(u.displayName+' · 기록 불러오는 중…');
+   if(!u){if(activeProfile!=='guest')switchProfile(null);$('googleLogin').hidden=false;$('cloudProfile').hidden=true;$('googleLogout').hidden=true;$('openCloud').textContent='Google로 시작하기';status('로그인하지 않아도 학습할 수 있습니다. Google로 로그인하면 내 기록이 동기화됩니다.');return}
+   switchProfile(u.uid);$('googleLogin').hidden=true;$('cloudProfile').hidden=false;$('cloudAccountName').textContent=u.displayName||u.email||'Google 계정';$('googleLogout').hidden=false;$('openCloud').textContent='☁ 내 기록';status('내 학습 기록 불러오는 중…');
    try{
     for(const type of types){
      const ref=doc(db,'users',u.uid,'records',type);const snap=await getDoc(ref);
@@ -155,8 +187,8 @@ async function start(){
      const remote=snap.data()?.last;
      if(remote&&remote.device!==deviceID)restoreProgress(remote);
     }));
-    status(u.displayName+' · 자동 동기화 활성화');
-   }catch(e){status('클라우드 연결 오류: '+(e.code||e.message)+' · Firestore 데이터베이스/보안 규칙 확인')}
+    saveActiveProfile();status('✓ '+(u.displayName||'Google 계정')+' · 학습 기록 자동 동기화 중');
+   }catch(e){status('기록 저장에 문제가 있습니다 ('+(e.code||e.message)+'). 관리자에게 문의해 주세요.')}
   });
  }catch(e){status('Firebase 모듈을 불러오지 못했습니다. 인터넷 연결 확인: '+e.message)}
 }
