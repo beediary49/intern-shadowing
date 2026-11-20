@@ -1,4 +1,4 @@
-# Intern Shadowing v38 — 자동 목록·이동 메모창
+# Intern Shadowing v39 — 자동 목록·이동 메모창
 
 기존 v37 Google 로그인·학습 기록 동기화와 영상 기능을 유지하면서 UI를 개선했습니다.
 
@@ -9,6 +9,10 @@
 ## GitHub 업데이트
 1. ZIP 압축을 풀어 안의 모든 파일/폴더를 기존 `beediary49/intern-shadowing` 저장소 루트에 업로드합니다.
 2. Commit changes를 누릅니다.
-3. https://beediary49.github.io/intern-shadowing/ 에서 `v38`을 확인합니다. 기존 화면이 보이면 앱을 완전히 종료하고 다시 열어주세요.
+3. https://beediary49.github.io/intern-shadowing/ 에서 `v39`을 확인합니다. 기존 화면이 보이면 앱을 완전히 종료하고 다시 열어주세요.
 
 **주의:** 모바일 화면에서 브라우저 높이에 따라 메모창의 이동 가능 범위가 제한될 수 있습니다. 실제 갤럭시와 노트북에서 동작 확인은 별도로 필요합니다.
+
+
+## v39 수정
+Part 1 09:00~09:18의 문장을 `They're great. I love 'em to pieces.`로 보정했습니다. 기존 기능과 기록은 유지하며 서비스워커 캐시 이름을 갱신했습니다.
