@@ -373,12 +373,24 @@
   },
   {
     "start": 755.44,
-    "end": 828.28,
-    "text": "\"Applicants must be over 65 years of age, have organizational skills, a genuine interest in e-commerce,\" whatever that is, \"and a roll-up-your-sleeves attitude.\"",
+    "end": 780.64,
+    "text": "\"Applicants must be over 65 years of age.\"",
     "repeats": 1,
     "occurrences": [
       [
         755.44,
+        780.64
+      ]
+    ]
+  },
+  {
+    "start": 780.64,
+    "end": 828.28,
+    "text": "\"Have organizational skills, a genuine interest in e-commerce,\" whatever that is, \"and a roll-up-your-sleeves attitude.\"",
+    "repeats": 1,
+    "occurrences": [
+      [
+        780.64,
         828.28
       ]
     ]
@@ -445,12 +457,24 @@
   },
   {
     "start": 892.44,
-    "end": 928.76,
-    "text": "Well, you have to upload the application.That could be challenging.",
+    "end": 912.2,
+    "text": "Well, you have to upload the application.",
     "repeats": 1,
     "occurrences": [
       [
         892.44,
+        912.2
+      ]
+    ]
+  },
+  {
+    "start": 912.2,
+    "end": 928.76,
+    "text": "That could be challenging. Listen to this.",
+    "repeats": 1,
+    "occurrences": [
+      [
+        912.2,
         928.76
       ]
     ]
@@ -458,7 +482,7 @@
   {
     "start": 928.84,
     "end": 944.36,
-    "text": "Listen to this, \"Cover letters are so old-fashioned.",
+    "text": "\"Cover letters are so old-fashioned.\"",
     "repeats": 1,
     "occurrences": [
       [
@@ -493,12 +517,24 @@
   },
   {
     "start": 1015.64,
-    "end": 1043.52,
-    "text": "We look forward to meeting you.\" Well, I guess that's meeting me.",
+    "end": 1031.0,
+    "text": "We look forward to meeting you.",
     "repeats": 1,
     "occurrences": [
       [
         1015.64,
+        1031.0
+      ]
+    ]
+  },
+  {
+    "start": 1031.0,
+    "end": 1043.52,
+    "text": "Well, I guess that's meeting me.",
+    "repeats": 1,
+    "occurrences": [
+      [
+        1031.0,
         1043.52
       ]
     ]

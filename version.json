@@ -1,0 +1,11 @@
+{
+  "version": "v43",
+  "updated": "2026-11-21",
+  "features": [
+    "top-left-click-update",
+    "network-first-service-worker",
+    "install-guide",
+    "part1-application-sync-fix",
+    "part1-meeting-you-split"
+  ]
+}
