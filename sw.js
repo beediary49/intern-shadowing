@@ -1,11 +1,12 @@
-const CACHE='intern-shadowing-v43-meeting-sync';
-const FILES=['./','./index.html','./manifest.webmanifest','./firebase-config.js','./cloud-sync.js','./version.json','./icons/icon-192.png','./icons/icon-512.png',...Array.from({length:7},(_,i)=>`./data/part${i+1}.json`)];
+const CACHE='intern-shadowing-v45-auto-video-match';
+const FILES=['./','./index.html','./manifest.webmanifest','./firebase-config.js','./cloud-sync.js','./video-sources.js','./version.json','./icons/icon-192.png','./icons/icon-512.png',...Array.from({length:7},(_,i)=>`./data/part${i+1}.json`)];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{const names=await caches.keys();await Promise.all(names.filter(k=>k.startsWith('intern-shadowing-')&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})()));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('fetch',event=>{
  const req=event.request;
  if(req.method!=='GET')return;
+ if(req.destination==='video'||req.headers.has('range'))return;
  const url=new URL(req.url);
  if(url.origin!==self.location.origin||!url.pathname.startsWith(new URL('./',self.registration.scope).pathname))return;
  if(req.mode==='navigate'||url.pathname.endsWith('/version.json')){

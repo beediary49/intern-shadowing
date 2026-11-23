@@ -1,11 +1,18 @@
 {
-  "version": "v43",
-  "updated": "2026-11-21",
+  "version": "v45",
+  "updated": "2026-11-22",
   "features": [
     "top-left-click-update",
     "network-first-service-worker",
     "install-guide",
     "part1-application-sync-fix",
-    "part1-meeting-you-split"
+    "part1-meeting-you-split",
+    "remote-video-fallback",
+    "local-mp4-priority",
+    "streaming-does-not-cache-videos",
+    "multi-video-picker",
+    "video-duration-automatic-part-matching",
+    "manual-review-unmatched-video",
+    "existing-video-protection"
   ]
 }
