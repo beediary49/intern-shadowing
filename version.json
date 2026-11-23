@@ -1,5 +1,5 @@
 {
-  "version": "v48",
+  "version": "v49",
   "updated": "2026-11-23",
   "features": [
     "top-left-click-update",
@@ -19,6 +19,8 @@
     "removed-per-sentence-play-buttons-keep-text-click",
     "memo-save-bottom-right-replaces-top-close",
     "memo-editor-opens-without-scrolling-or-changing-active-cue",
-    "freeze-app-layout-during-note-keyboard"
+    "freeze-app-layout-during-note-keyboard",
+    "per-sentence-study-complete-to-right-of-star",
+    "removed-study-complete-from-memo-panel"
   ]
 }

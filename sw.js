@@ -1,4 +1,4 @@
-const CACHE='intern-shadowing-v48-note-save-fixed-screen';
+const CACHE='intern-shadowing-v49-row-complete';
 const FILES=['./','./index.html','./manifest.webmanifest','./firebase-config.js','./cloud-sync.js','./video-sources.js','./version.json','./icons/icon-192.png','./icons/icon-512.png',...Array.from({length:7},(_,i)=>`./data/part${i+1}.json`)];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{const names=await caches.keys();await Promise.all(names.filter(k=>k.startsWith('intern-shadowing-')&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})()));
