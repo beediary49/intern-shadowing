@@ -1,6 +1,6 @@
 {
-  "version": "v45",
-  "updated": "2026-11-22",
+  "version": "v47",
+  "updated": "2026-11-23",
   "features": [
     "top-left-click-update",
     "network-first-service-worker",
@@ -13,6 +13,9 @@
     "multi-video-picker",
     "video-duration-automatic-part-matching",
     "manual-review-unmatched-video",
-    "existing-video-protection"
+    "existing-video-protection",
+    "per-sentence-pencil-memo-left-of-star",
+    "removed-bottom-right-memo-button",
+    "removed-per-sentence-play-buttons-keep-text-click"
   ]
 }
