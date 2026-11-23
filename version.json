@@ -1,5 +1,5 @@
 {
-  "version": "v47",
+  "version": "v48",
   "updated": "2026-11-23",
   "features": [
     "top-left-click-update",
@@ -16,6 +16,9 @@
     "existing-video-protection",
     "per-sentence-pencil-memo-left-of-star",
     "removed-bottom-right-memo-button",
-    "removed-per-sentence-play-buttons-keep-text-click"
+    "removed-per-sentence-play-buttons-keep-text-click",
+    "memo-save-bottom-right-replaces-top-close",
+    "memo-editor-opens-without-scrolling-or-changing-active-cue",
+    "freeze-app-layout-during-note-keyboard"
   ]
 }
