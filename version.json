@@ -1,5 +1,5 @@
 {
-  "version": "v49",
+  "version": "v51",
   "updated": "2026-11-23",
   "features": [
     "top-left-click-update",
@@ -21,6 +21,8 @@
     "memo-editor-opens-without-scrolling-or-changing-active-cue",
     "freeze-app-layout-during-note-keyboard",
     "per-sentence-study-complete-to-right-of-star",
-    "removed-study-complete-from-memo-panel"
+    "removed-study-complete-from-memo-panel",
+    "swap-favorite-and-note-icon-order",
+    "sticky-memo-save-at-note-panel-bottom-right"
   ]
 }
