@@ -626,7 +626,7 @@
   {
     "start": 1180.08,
     "end": 1183.44,
-    "text": "Well, it's true, you are.",
+    "text": "Well, it's true, you are. So I'll see you.",
     "repeats": 1,
     "occurrences": [
       [
@@ -649,12 +649,24 @@
   },
   {
     "start": 1196.44,
-    "end": 1246.56,
-    "text": "So here I am, applying to be one of your interns because the more I think about this idea, the more tremendous I think it is.",
+    "end": 1221.04,
+    "text": "So here I am, applying to be one of your interns.",
     "repeats": 1,
     "occurrences": [
       [
         1196.44,
+        1221.04
+      ]
+    ]
+  },
+  {
+    "start": 1221.04,
+    "end": 1246.56,
+    "text": "Because the more I think about this idea, the more tremendous I think it is.",
+    "repeats": 1,
+    "occurrences": [
+      [
+        1221.04,
         1246.56
       ]
     ]
