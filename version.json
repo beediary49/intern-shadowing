@@ -1,6 +1,6 @@
 {
-  "version": "v53",
-  "updated": "2026-11-24",
+  "version": "v54",
+  "updated": "2026-11-25",
   "features": [
     "top-left-click-update",
     "network-first-service-worker",
@@ -25,6 +25,7 @@
     "swap-favorite-and-note-icon-order",
     "sticky-memo-save-at-note-panel-bottom-right",
     "part1-1940-restore-so-ill-see-you",
-    "part1-1956-2021-split-caption-sync"
+    "part1-1956-2021-split-caption-sync",
+    "part1-2238-restore-but-ill-get-there"
   ]
 }
